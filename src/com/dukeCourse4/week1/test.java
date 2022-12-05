@@ -7,6 +7,7 @@ public class test {
         EarthQuakeClient eqc = new EarthQuakeClient();
         ClosestQuakes cq = new ClosestQuakes();
         //eqc.bigQuakes();
-        cq.findClosestQuakes();
+        eqc.quakesOfDepth();
+        //cq.findClosestQuakes();
     }
 }
