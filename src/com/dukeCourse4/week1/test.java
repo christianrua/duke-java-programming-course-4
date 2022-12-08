@@ -6,8 +6,10 @@ public class test {
     public static void main(String[] args) {
         EarthQuakeClient eqc = new EarthQuakeClient();
         ClosestQuakes cq = new ClosestQuakes();
+        LargestQuakes lq = new LargestQuakes();
         //eqc.bigQuakes();
-        eqc.quakesOfDepth();
+        //eqc.quakesByPhrase();
         //cq.findClosestQuakes();
+        lq.findLargestQuakes();
     }
 }

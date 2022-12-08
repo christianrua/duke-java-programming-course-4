@@ -6,7 +6,7 @@ public class EarthQuakeClient {
 
     private String nov20QuakeDataPath = "src/com/dukeCourse4/week1/data/nov20quakedatasmall.atom";
 
-    private ArrayList<QuakeEntry> getQuakeData(){
+    public ArrayList<QuakeEntry> getQuakeData(){
         EarthQuakeParser parser = new EarthQuakeParser();
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         String source = nov20QuakeDataPath;
@@ -105,22 +105,36 @@ public class EarthQuakeClient {
         for (QuakeEntry qe : quakeData) {
             String info = qe.getInfo();
             switch (where){
+
                 case "start":
                     if(info.startsWith(phrase)){
                         answer.add(qe);
                     }
                     break;
+
                 case "end":
                     if(info.endsWith(phrase)){
                         answer.add(qe);
                     }
                     break;
 
-                case "":
-                    //I'm here trying to do the function filterByPhrase.
+                case "any":
+                    if(info.contains(phrase)){
+                        answer.add(qe);
+                    }
                     break;
             }
         }
         return answer;
+    }
+
+    public void quakesByPhrase(){
+        ArrayList<QuakeEntry> list = getQuakeData();
+        ArrayList<QuakeEntry> quakesByPhraseList = filterByPhrase(list,"start", "Explosion");
+        System.out.println("The total number of earth quakes are " + quakesByPhraseList.size());
+        System.out.println("list content ");
+        for(QuakeEntry qe : quakesByPhraseList){
+            System.out.println(qe.toString());
+        }
     }
 }
