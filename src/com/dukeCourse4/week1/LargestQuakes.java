@@ -9,10 +9,14 @@ public class LargestQuakes {
 
     public void findLargestQuakes(){
         ArrayList<QuakeEntry> list = eqc.getQuakeData();
-        System.out.println("total amount of earth quakes " + list.size());
-        for(QuakeEntry qe : list){
+        ArrayList<QuakeEntry> largestQuakesList = getLargest(list, 5);
+        for(QuakeEntry qe : largestQuakesList){
             System.out.println(qe.toString());
         }
+//        System.out.println("total amount of earth quakes " + list.size());
+//        for(QuakeEntry qe : list){
+//            System.out.println(qe.toString());
+//        }
 //        int index = indexOfLargest(list);
 //        System.out.println("The largest earth quake index is " + index);
 //        System.out.println("largest earth quake content " + list.get(index).toString());
@@ -31,15 +35,20 @@ public class LargestQuakes {
         return indexBiggestMagnitude;
     }
     // I'm here writing the method getLargest
-    public static Comparator<QuakeEntry> comparator = new Comparator<QuakeEntry>() {
-        @Override
-        public int compare(QuakeEntry o1, QuakeEntry o2) {
-            return (int)(o1.getMagnitude() - o2.getMagnitude());
+
+    public ArrayList<QuakeEntry> getLargest(ArrayList<QuakeEntry> quakeData, int howMany){
+        ArrayList<QuakeEntry> list = eqc.getQuakeData();
+        ArrayList<QuakeEntry> answer = new ArrayList<>();
+        Collections.sort(list, QuakeEntry.sortByMagnitude);
+        if(list.size() < howMany){
+            return list;
+        } else {
+            for(int i=0; i < howMany; i++){
+                answer.add(list.get(i));
+            }
+            return answer;
         }
     }
 
-    public void getLargest(ArrayList<QuakeEntry> quakeData, int howMany){
-        ArrayList<QuakeEntry> list = eqc.getQuakeData();
-        Collections.sort(list, QuakeEntry.);
-    }
+
 }

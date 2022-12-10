@@ -4,7 +4,7 @@ import edu.duke.*;
 
 public class EarthQuakeClient {
 
-    private String nov20QuakeDataPath = "src/com/dukeCourse4/week1/data/nov20quakedatasmall.atom";
+    private String nov20QuakeDataPath = "src/com/dukeCourse4/week1/data/nov20quakedata.atom";
 
     public ArrayList<QuakeEntry> getQuakeData(){
         EarthQuakeParser parser = new EarthQuakeParser();
@@ -92,8 +92,8 @@ public class EarthQuakeClient {
 
     public void quakesOfDepth(){
         ArrayList<QuakeEntry> list = getQuakeData();
-        ArrayList<QuakeEntry> filteredQuakes = filterByDepth(list, -10000.0, -5000.0);
-        System.out.println("Find quakes with depth between -10000.0 and -5000.0");
+        ArrayList<QuakeEntry> filteredQuakes = filterByDepth(list, -8000.0, -5000.0);
+        System.out.println("Find quakes with depth between -8000.0 and -5000.0");
         System.out.println("Found " + filteredQuakes.size() + " quakes that match that criteria");
         for (QuakeEntry qe : filteredQuakes) {
             System.out.println(qe);
@@ -130,7 +130,7 @@ public class EarthQuakeClient {
 
     public void quakesByPhrase(){
         ArrayList<QuakeEntry> list = getQuakeData();
-        ArrayList<QuakeEntry> quakesByPhraseList = filterByPhrase(list,"start", "Explosion");
+        ArrayList<QuakeEntry> quakesByPhraseList = filterByPhrase(list,"any", "Creek");
         System.out.println("The total number of earth quakes are " + quakesByPhraseList.size());
         System.out.println("list content ");
         for(QuakeEntry qe : quakesByPhraseList){
