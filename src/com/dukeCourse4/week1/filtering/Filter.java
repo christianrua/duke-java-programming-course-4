@@ -7,4 +7,6 @@ package com.dukeCourse4.week1.filtering;
  */
 public interface Filter {
     public  boolean satisfies(QuakeEntry qe);
+
+    public String getName();
 }

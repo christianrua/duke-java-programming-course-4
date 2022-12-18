@@ -3,10 +3,12 @@ package com.dukeCourse4.week1.filtering;
 public class MagnitudeFilter implements Filter {
 
     private double minMag, maxMag;
+    private String filterName;
 
-    public MagnitudeFilter(double minMagParam,double maxMagParam){
+    public MagnitudeFilter(double minMagParam,double maxMagParam, String givenFilterName){
         minMag = minMagParam;
         maxMag = maxMagParam;
+        filterName = givenFilterName;
     }
 
     public  boolean satisfies(QuakeEntry qe){
@@ -16,6 +18,10 @@ public class MagnitudeFilter implements Filter {
         } else {
             return false;
         }
+    }
+
+    public String getName(){
+        return filterName;
     }
 
 }

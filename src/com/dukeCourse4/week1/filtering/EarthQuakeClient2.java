@@ -12,8 +12,19 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 public class EarthQuakeClient2 {
+    private String nov20QuakeDataPath = "src/com/dukeCourse4/week1/data/nov20quakedata.atom";
+
     public EarthQuakeClient2() {
         // TODO Auto-generated constructor stub
+    }
+
+    public ArrayList<QuakeEntry> getQuakeData(){
+        EarthQuakeParser parser = new EarthQuakeParser();
+        //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
+        String source = nov20QuakeDataPath;
+        ArrayList<QuakeEntry> list = parser.read(source);
+        System.out.println("read data for " + list.size() + " quakes");
+        return list;
     }
 
     public ArrayList<QuakeEntry> filter(ArrayList<QuakeEntry> quakeData, Filter f) {
@@ -28,17 +39,77 @@ public class EarthQuakeClient2 {
     }
 
     public void quakesWithFilter() {
-        EarthQuakeParser parser = new EarthQuakeParser();
-        //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
-        String source = "data/nov20quakedatasmall.atom";
-        ArrayList<QuakeEntry> list  = parser.read(source);
-        System.out.println("read data for "+list.size()+" quakes");
+        ArrayList<QuakeEntry> list = getQuakeData();
 
-        Filter f = new MinMagFilter(4.0);
-        ArrayList<QuakeEntry> m7  = filter(list, f);
-        for (QuakeEntry qe: m7) {
+        Filter magnitudeFilter = new MagnitudeFilter(4.0,5.0, "magnitudeFilter");
+        Filter depthFilter = new DepthFilter(-35000.0, -12000.0, "depthFilter");
+
+        ArrayList<QuakeEntry> filteredByMagnitude = filter(list, magnitudeFilter);
+        ArrayList<QuakeEntry> filteredByDepthAndMagnitude = filter(filteredByMagnitude, depthFilter);
+
+        for (QuakeEntry qe: filteredByDepthAndMagnitude) {
             System.out.println(qe);
         }
+
+//        Location japan = new Location(35.42, 139.43);
+//        DistanceFilter distanceFilter = new DistanceFilter(japan,10000000, "distanceFilter");
+//        PhraseFilter phraseFilter = new PhraseFilter("end", "Japan", "phraseFilter");
+//
+//        ArrayList<QuakeEntry> filteredPhrase = filter(list, phraseFilter);
+//        ArrayList<QuakeEntry> filteredPhraseAndDistance = filter(filteredPhrase, distanceFilter);
+//
+//        for (QuakeEntry qe: filteredPhraseAndDistance) {
+//            System.out.println(qe);
+//        }
+
+    }
+
+    public void testMatchAllFilter(){
+        ArrayList<QuakeEntry> list = getQuakeData();
+
+        MatchAllFilter maf = new MatchAllFilter();
+
+        Filter magnitudeFilter = new MagnitudeFilter(0.0,2.0, "magnitudeFilter");
+        Filter depthFilter = new DepthFilter(-100000.0, -10000.0, "depthFilter");
+        PhraseFilter phraseFilter = new PhraseFilter("any", "a", "phraseFilter");
+
+        maf.addFilter(magnitudeFilter);
+        maf.addFilter(depthFilter);
+        maf.addFilter(phraseFilter);
+
+        ArrayList<QuakeEntry> filteredData = filter(list, maf);
+
+        for (QuakeEntry qe: filteredData) {
+            System.out.println(qe);
+        }
+
+        System.out.println("the amount of earthquakes are " + filteredData.size());
+        System.out.println("Filters used are: " + maf.getName());
+
+
+    }
+
+    public void testMatchAllFilter2(){
+        ArrayList<QuakeEntry> list = getQuakeData();
+
+        MatchAllFilter maf = new MatchAllFilter();
+
+        Filter magnitudeFilter = new MagnitudeFilter(0.0,3.0, "magnitudeFilter");
+        Location tulsa = new Location(36.1314,-95.9372);
+        Filter distanceFilter = new DistanceFilter(tulsa, 10000000, "distanceFilter");
+        PhraseFilter phraseFilter = new PhraseFilter("any", "Ca", "phraseFilter");
+
+        maf.addFilter(magnitudeFilter);
+        maf.addFilter(distanceFilter);
+        maf.addFilter(phraseFilter);
+
+        ArrayList<QuakeEntry> filteredData = filter(list, maf);
+
+        for (QuakeEntry qe: filteredData) {
+            System.out.println(qe);
+        }
+
+        System.out.println("the amount of earthquakes are " + filteredData.size());
     }
 
     public void createCSV() {
