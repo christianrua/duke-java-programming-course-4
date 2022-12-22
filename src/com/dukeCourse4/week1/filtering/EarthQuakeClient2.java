@@ -12,7 +12,7 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 public class EarthQuakeClient2 {
-    private String nov20QuakeDataPath = "src/com/dukeCourse4/week1/data/nov20quakedata.atom";
+    private String nov20QuakeDataPath = "src/com/dukeCourse4/data/nov20quakedata.atom";
 
     public EarthQuakeClient2() {
         // TODO Auto-generated constructor stub
@@ -41,23 +41,23 @@ public class EarthQuakeClient2 {
     public void quakesWithFilter() {
         ArrayList<QuakeEntry> list = getQuakeData();
 
-        Filter magnitudeFilter = new MagnitudeFilter(4.0,5.0, "magnitudeFilter");
-        Filter depthFilter = new DepthFilter(-35000.0, -12000.0, "depthFilter");
+        Filter magnitudeFilter = new MagnitudeFilter(3.5,4.5, "magnitudeFilter");
+        Filter depthFilter = new DepthFilter(-55000.0, -20000.0, "depthFilter");
 
         ArrayList<QuakeEntry> filteredByMagnitude = filter(list, magnitudeFilter);
         ArrayList<QuakeEntry> filteredByDepthAndMagnitude = filter(filteredByMagnitude, depthFilter);
-
+        System.out.println("The number of earthquakes found is " + filteredByDepthAndMagnitude.size());
         for (QuakeEntry qe: filteredByDepthAndMagnitude) {
             System.out.println(qe);
         }
 
-//        Location japan = new Location(35.42, 139.43);
-//        DistanceFilter distanceFilter = new DistanceFilter(japan,10000000, "distanceFilter");
-//        PhraseFilter phraseFilter = new PhraseFilter("end", "Japan", "phraseFilter");
+//        Location denver = new Location(39.7392, -104.9903);
+//        DistanceFilter distanceFilter = new DistanceFilter(denver,1000000, "distanceFilter");
+//        PhraseFilter phraseFilter = new PhraseFilter("end", "a", "phraseFilter");
 //
 //        ArrayList<QuakeEntry> filteredPhrase = filter(list, phraseFilter);
 //        ArrayList<QuakeEntry> filteredPhraseAndDistance = filter(filteredPhrase, distanceFilter);
-//
+//        System.out.println("The number of earthquakes found is " + filteredPhraseAndDistance.size());
 //        for (QuakeEntry qe: filteredPhraseAndDistance) {
 //            System.out.println(qe);
 //        }
@@ -69,9 +69,9 @@ public class EarthQuakeClient2 {
 
         MatchAllFilter maf = new MatchAllFilter();
 
-        Filter magnitudeFilter = new MagnitudeFilter(0.0,2.0, "magnitudeFilter");
-        Filter depthFilter = new DepthFilter(-100000.0, -10000.0, "depthFilter");
-        PhraseFilter phraseFilter = new PhraseFilter("any", "a", "phraseFilter");
+        Filter magnitudeFilter = new MagnitudeFilter(1.0,4.0, "magnitudeFilter");
+        Filter depthFilter = new DepthFilter(-180000.0, -30000.0, "depthFilter");
+        PhraseFilter phraseFilter = new PhraseFilter("any", "o", "phraseFilter");
 
         maf.addFilter(magnitudeFilter);
         maf.addFilter(depthFilter);
@@ -94,10 +94,10 @@ public class EarthQuakeClient2 {
 
         MatchAllFilter maf = new MatchAllFilter();
 
-        Filter magnitudeFilter = new MagnitudeFilter(0.0,3.0, "magnitudeFilter");
-        Location tulsa = new Location(36.1314,-95.9372);
-        Filter distanceFilter = new DistanceFilter(tulsa, 10000000, "distanceFilter");
-        PhraseFilter phraseFilter = new PhraseFilter("any", "Ca", "phraseFilter");
+        Filter magnitudeFilter = new MagnitudeFilter(0.0,5.0, "magnitudeFilter");
+        Location billund = new Location(55.7308,9.1153);
+        Filter distanceFilter = new DistanceFilter(billund, 3000000, "distanceFilter");
+        PhraseFilter phraseFilter = new PhraseFilter("any", "e", "phraseFilter");
 
         maf.addFilter(magnitudeFilter);
         maf.addFilter(distanceFilter);

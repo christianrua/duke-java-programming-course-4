@@ -12,7 +12,7 @@ import org.xml.sax.SAXException;
 
 public class EarthQuakeClient {
 
-    private String nov20QuakeDataPath = "src/com/dukeCourse4/week1/data/nov20quakedata.atom";
+    private String nov20QuakeDataPath = "src/com/dukeCourse4/data/nov20quakedata.atom";
 
     public ArrayList<QuakeEntry> getQuakeData(){
         EarthQuakeParser parser = new EarthQuakeParser();
@@ -100,7 +100,7 @@ public class EarthQuakeClient {
 
     public void quakesOfDepth(){
         ArrayList<QuakeEntry> list = getQuakeData();
-        ArrayList<QuakeEntry> filteredQuakes = filterByDepth(list, -8000.0, -5000.0);
+        ArrayList<QuakeEntry> filteredQuakes = filterByDepth(list, -4000.0, -2000.0);
         System.out.println("Find quakes with depth between -8000.0 and -5000.0");
         System.out.println("Found " + filteredQuakes.size() + " quakes that match that criteria");
         for (QuakeEntry qe : filteredQuakes) {
@@ -138,7 +138,7 @@ public class EarthQuakeClient {
 
     public void quakesByPhrase(){
         ArrayList<QuakeEntry> list = getQuakeData();
-        ArrayList<QuakeEntry> quakesByPhraseList = filterByPhrase(list,"any", "Creek");
+        ArrayList<QuakeEntry> quakesByPhraseList = filterByPhrase(list,"any", "Can");
         System.out.println("The total number of earth quakes are " + quakesByPhraseList.size());
         System.out.println("list content ");
         for(QuakeEntry qe : quakesByPhraseList){

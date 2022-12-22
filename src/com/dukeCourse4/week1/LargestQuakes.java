@@ -9,7 +9,7 @@ public class LargestQuakes {
 
     public void findLargestQuakes(){
         ArrayList<QuakeEntry> list = eqc.getQuakeData();
-        ArrayList<QuakeEntry> largestQuakesList = getLargest(list, 5);
+        ArrayList<QuakeEntry> largestQuakesList = getLargest(list, 50);
         for(QuakeEntry qe : largestQuakesList){
             System.out.println(qe.toString());
         }
