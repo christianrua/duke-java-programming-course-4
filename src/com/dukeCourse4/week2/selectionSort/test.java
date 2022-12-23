@@ -4,6 +4,8 @@ public class test {
 
     public static void main(String[] args) {
         QuakeSort qs = new QuakeSort();
-        qs.testSort();
+        QuakeSortInPlace qsp = new QuakeSortInPlace();
+        //qs.testSort();
+        qsp.testSort();
     }
 }
