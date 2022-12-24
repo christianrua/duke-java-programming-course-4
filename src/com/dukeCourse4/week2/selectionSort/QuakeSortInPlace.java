@@ -32,12 +32,9 @@ public class QuakeSortInPlace {
     }
 
     public int getLargestDepth(ArrayList<QuakeEntry> quakeData, int from){
-        double maxDepth = 0.0;
         int maxDepthIndex = from;
         for(int i=from+1; i < quakeData.size(); i++){
-            double currentDepth = quakeData.get(i).getMagnitude();
-            if(currentDepth > maxDepth){
-                maxDepth = currentDepth;
+            if(quakeData.get(i).getDepth() > quakeData.get(maxDepthIndex).getDepth()){
                 maxDepthIndex = i;
             }
         }
