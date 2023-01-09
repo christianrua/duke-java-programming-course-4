@@ -9,7 +9,7 @@ import com.dukeCourse4.week2.programmingExercise.TitleLastAndMagnitudeComparator
 
 public class DifferentSorters {
 
-    private String dataUrl = "src/com/dukeCourse4/data/nov20quakedata.atom";
+    private String dataUrl = "src/com/dukeCourse4/data/earthQuakeDataWeekDec6sample1.atom";
 
     private ArrayList<QuakeEntry> getDataList(){
         EarthQuakeParser parser = new EarthQuakeParser();
@@ -26,7 +26,7 @@ public class DifferentSorters {
             System.out.println(qe);
         }
 
-        int quakeNumber = 10;
+        int quakeNumber = 600;
         System.out.println("Print quake entry in position " + quakeNumber);
         System.out.println(list.get(quakeNumber));
 
@@ -59,7 +59,7 @@ public class DifferentSorters {
             System.out.println(qe);
         }
 
-        int quakeNumber = 10;
+        int quakeNumber = 500;
         System.out.println("Print quake entry in position " + quakeNumber);
         System.out.println(list.get(quakeNumber));
     }
@@ -71,7 +71,7 @@ public class DifferentSorters {
             System.out.println(qe);
         }
 
-        int quakeNumber = 10;
+        int quakeNumber = 500;
         System.out.println("Print quake entry in position " + quakeNumber);
         System.out.println(list.get(quakeNumber));
     }
