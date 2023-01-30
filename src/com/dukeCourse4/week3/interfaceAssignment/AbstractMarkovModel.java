@@ -1,19 +1,28 @@
-package com.dukeCourse4.week3.GeneratingRandomText;
+package com.dukeCourse4.week3.interfaceAssignment;
 
-import java.util.ArrayList;
-import java.util.Random;
+/**
+ * Abstract class AbstractMarkovModel - write a description of the class here
+ *
+ * @author (your name here)
+ * @version (version number or date here)
+ */
 
-public abstract class AbstractMarkovModel implements IMarkovModel{
+import java.util.*;
 
+public abstract class AbstractMarkovModel implements IMarkovModel {
     protected String myText;
     protected Random myRandom;
 
-    public AbstractMarkovModel(){
+    public AbstractMarkovModel() {
         myRandom = new Random();
     }
 
-    public void setTraining(String text){
-        myText = text;
+    public void setTraining(String s) {
+        myText = s.trim();
+    }
+
+    public void setRandom(int seed){
+        myRandom = new Random(seed);
     }
 
     abstract public String getRandomText(int numChars);
@@ -31,12 +40,10 @@ public abstract class AbstractMarkovModel implements IMarkovModel{
                 if(lettersLength != 1){
                     nextIndex = i + lettersLength ;
                 }
-
                 if(letters.equals(currentLetters) && nextIndex < trainingTextLength){
                     follows.add(Character.toString(myText.charAt(nextIndex)));
                 }
             }
-
         }
         return follows;
     }
