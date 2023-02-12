@@ -5,6 +5,6 @@ public class test {
 
     public static void main(String[] args) {
         MarkovRunnerWithInterface mrwi = new MarkovRunnerWithInterface();
-        mrwi.runMarkov();
+        mrwi.testHashMap();
     }
 }

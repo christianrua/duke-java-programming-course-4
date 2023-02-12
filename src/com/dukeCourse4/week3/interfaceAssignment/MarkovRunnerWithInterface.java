@@ -9,6 +9,7 @@ package com.dukeCourse4.week3.interfaceAssignment;
 
 import edu.duke.*;
 import com.dukeCourse4.week3.interfaceAssignment.MarkovModel;
+import com.dukeCourse4.week3.interfaceAssignment.EfficientMarkovModel;
 
 public class MarkovRunnerWithInterface {
     public void runModel(IMarkovModel markov, String text, int size, int seed) {
@@ -57,4 +58,12 @@ public class MarkovRunnerWithInterface {
         System.out.println("\n----------------------------------");
     }
 
+    public void testHashMap(){
+        EfficientMarkovModel mTwo = new EfficientMarkovModel(2);
+        mTwo.setRandom(42);
+        mTwo.setTraining("yes-this-is-a-thin-pretty-pink-thistle");
+        //mTwo.printHashMapInfo();
+        String st = mTwo.getRandomText(50);
+        printOut(st);
+    }
 }
