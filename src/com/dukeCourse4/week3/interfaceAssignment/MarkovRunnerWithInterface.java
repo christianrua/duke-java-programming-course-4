@@ -59,11 +59,43 @@ public class MarkovRunnerWithInterface {
     }
 
     public void testHashMap(){
-        EfficientMarkovModel mTwo = new EfficientMarkovModel(2);
-        mTwo.setRandom(42);
-        mTwo.setTraining("yes-this-is-a-thin-pretty-pink-thistle");
-        //mTwo.printHashMapInfo();
-        String st = mTwo.getRandomText(50);
-        printOut(st);
+//        EfficientMarkovModel mTwo = new EfficientMarkovModel(2);
+//        mTwo.setRandom(42);
+//        mTwo.setTraining("yes-this-is-a-thin-pretty-pink-thistle");
+//        //mTwo.printHashMapInfo();
+//        String st = mTwo.getRandomText(50);
+//        printOut(st);
+
+        EfficientMarkovModel mFive = new EfficientMarkovModel(5);
+        FileResource fr = new FileResource("com/dukeCourse4/data/romeo.txt");
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+        runModel(mFive , st, 0, 615);
     }
+
+    public void compareMethods(){
+        MarkovModel markovModel2 = new MarkovModel(2);
+        EfficientMarkovModel efficientMarkovModel2 = new EfficientMarkovModel(2);
+
+        FileResource fr = new FileResource("com/dukeCourse4/data/hawthorne.txt");
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+        int size = 1000;
+        int seed = 42;
+
+        final long start = System.nanoTime();
+        runModel(markovModel2, st, size, seed);
+        final long end = System.nanoTime();
+
+        System.out.println("markovModel2 Took: " + ((end - start) / 1000000) + "ms");
+        System.out.println("markovModel2 Took: " + (end - start)/ 1000000000 + " seconds");
+
+        final long start2 = System.nanoTime();
+        runModel(efficientMarkovModel2, st, size, seed);
+        final long end2 = System.nanoTime();
+
+        System.out.println("efficientMarkovModel2 Took: " + ((end2 - start2) / 1000000) + "ms");
+        System.out.println("efficientMarkovModel2Took: " + (end2 - start2)/ 1000000000 + " seconds");
+    }
+
 }
