@@ -26,8 +26,6 @@ public class MarkovWordOne implements IMarkovModel {
         sb.append(" ");
         for(int k=0; k < numWords-1; k++){
             ArrayList<String> follows = getFollows(key);
-            //I'm here testin the getFollows method
-            System.out.println("getFollows result for the key: "+key+", is: "+follows);
             if (follows.size() == 0) {
                 break;
             }
@@ -53,18 +51,6 @@ public class MarkovWordOne implements IMarkovModel {
 
     private ArrayList<String> getFollows(String key) {
         ArrayList<String> follows = new ArrayList<>();
-//        int trainingArrayLength = myText.length;
-//
-//        for(int i=0; i < trainingArrayLength; i++){
-//            int nextIndex = i + 1;
-//            if(key.equals(myText[i]) && nextIndex < trainingArrayLength){
-//                follows.add(myText[nextIndex]);
-//            }
-//
-//        }
-//        return follows;
-//    }
-
         int pos = 0;
         while (pos < myText.length){
             int start = indexOf(myText, key, pos);

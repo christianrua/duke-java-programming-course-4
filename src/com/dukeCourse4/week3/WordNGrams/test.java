@@ -4,8 +4,12 @@ public class test {
 
     public static void main(String[] args) {
         MarkovRunner mr = new MarkovRunner();
+        //mr.runMarkovTwo();
         //mr.runMarkov();
         MarkovWordOne mwo = new MarkovWordOne();
-        mwo.testIndexOf();
+        //mwo.testIndexOf();
+        WordGramTester wgt = new WordGramTester();
+        wgt.testWordGramShiftAdd();
+
     }
 }
