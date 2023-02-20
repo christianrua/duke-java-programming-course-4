@@ -58,4 +58,10 @@ public class WordGram {
         // you lose the first word
         return out;
     }
+
+    public int hashCode(){
+        return this.toString().hashCode();
+    }
+
+
 }

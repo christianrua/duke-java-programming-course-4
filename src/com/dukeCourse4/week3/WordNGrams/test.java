@@ -6,10 +6,13 @@ public class test {
         MarkovRunner mr = new MarkovRunner();
         //mr.runMarkovTwo();
         //mr.runMarkov();
+        //mr.runMarkovWord();
+        //mr.compareMethods();
+        mr.testHashMap();
         MarkovWordOne mwo = new MarkovWordOne();
         //mwo.testIndexOf();
         WordGramTester wgt = new WordGramTester();
-        wgt.testWordGramShiftAdd();
+        //wgt.testWordGramShiftAdd();
 
     }
 }

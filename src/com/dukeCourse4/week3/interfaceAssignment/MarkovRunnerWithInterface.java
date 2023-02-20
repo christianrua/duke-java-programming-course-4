@@ -67,10 +67,10 @@ public class MarkovRunnerWithInterface {
 //        printOut(st);
 
         EfficientMarkovModel mFive = new EfficientMarkovModel(5);
-        FileResource fr = new FileResource("com/dukeCourse4/data/romeo.txt");
+        FileResource fr = new FileResource("com/dukeCourse4/data/confucius.txt");
         String st = fr.asString();
         st = st.replace('\n', ' ');
-        runModel(mFive , st, 0, 615);
+        runModel(mFive , st, 0, 531);
     }
 
     public void compareMethods(){

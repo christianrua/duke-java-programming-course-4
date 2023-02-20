@@ -48,7 +48,7 @@ public class tester {
 //        System.out.println("the array size is " + response.size());
 
 //        mr.runMarkov(1,mr.getData(),273);
-//        mr.runMarkov(4,mr.getData(),371);
-        mr.runMarkov(8,mr.getData(),365);
+        mr.runMarkov(7,mr.getData(),953);
+        //mr.runMarkov(8,mr.getData(),365);
     }
 }
